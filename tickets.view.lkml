@@ -7,6 +7,11 @@ view: tickets {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: description {
+    type: string
+    sql: ${TABLE}.description ;;
+  }
+
   dimension: assignee_email {
     description: "the requester is the customer who initiated the ticket. the email is retrieved from the `users` table."
     sql: ${assignees.email} ;;
