@@ -6,7 +6,7 @@
       height: 150
     - elements: [tickets_and_orgs]
       height: 400
-    - elements: [tickets_by_channel, count_by_status]
+    - elements: [tickets_by_subject, count_by_status]
       height: 400
     - elements: [top_orgs, top_requesters, top_assignees]
       height: 400
@@ -68,15 +68,15 @@
     listen:
       date: tickets.created_at_date
 
-  - name: tickets_by_channel
-    title: Tickets submitted by channel
+  - name: tickets_by_subject
+    title: Tickets submitted by subject
     type: looker_pie
     model: zendesk
     explore: ticket_metrics
-    dimensions: [tickets.via__channel]
+    dimensions: [tickets.subject]
     measures: [tickets.count]
     sorts: [tickets.count desc]
-    limit: 500
+    limit: 50
     value_labels: legend
     colors: ['#FFCC00', '#1E2023', '#3399CC', '#CC3399', '#66CC66', '#999999', '#FF4E00', '#A2ECBA', '#9932CC', '#0000CD']
     show_view_names: true

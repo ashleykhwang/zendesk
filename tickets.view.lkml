@@ -102,7 +102,7 @@ view: tickets {
 
   dimension: via__channel {
     type: string
-    sql: ${TABLE}.via_channel ;;
+    sql: ${TABLE}.via__channel ;;
   }
 
   measure: count {
