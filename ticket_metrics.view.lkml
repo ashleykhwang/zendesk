@@ -10,12 +10,12 @@ view: ticket_metrics {
 
   dimension: agent_wait_time_in_minutes__business {
     type: number
-    sql: ${TABLE}.agent_wait_time_in_minutes__business ;;
+    sql: ${TABLE}.agent_wait_time_in_minutes_business ;;
   }
 
   dimension: agent_wait_time_in_minutes__calendar {
     type: number
-    sql: ${TABLE}.agent_wait_time_in_minutes__calendar ;;
+    sql: ${TABLE}.agent_wait_time_in_minutes_calendar ;;
   }
 
   dimension_group: assigned {
@@ -60,7 +60,7 @@ view: ticket_metrics {
 
   dimension: first_resolution_time_in_minutes__business {
     type: number
-    sql: ${TABLE}.first_resolution_time_in_minutes__business ;;
+    sql: ${TABLE}.first_resolution_time_in_minutes_business ;;
   }
 
   measure: avg_first_resolution_time_in_minutes__business {
@@ -78,7 +78,7 @@ view: ticket_metrics {
 
   dimension: full_resolution_time_in_minutes__business {
     type: number
-    sql: ${TABLE}.full_resolution_time_in_minutes__business ;;
+    sql: ${TABLE}.full_resolution_time_in_minutes_business ;;
   }
 
   measure: avg_full_resolution_time_in_minutes__business {
@@ -99,7 +99,7 @@ view: ticket_metrics {
 
   dimension: first_resolution_time_in_hours__business {
     type: number
-    sql: (${TABLE}.first_resolution_time_in_minutes__business / 60) ;;
+    sql: (${TABLE}.first_resolution_time_in_minutes_business / 60) ;;
   }
 
   measure: avg_first_resolution_time_in_hours__business {
@@ -117,7 +117,7 @@ view: ticket_metrics {
 
   dimension: full_resolution_time_in_hours__business {
     type: number
-    sql: ${TABLE}.full_resolution_time_in_minutes__business / 60 ;;
+    sql: ${TABLE}.full_resolution_time_in_minutes_business / 60 ;;
   }
 
   measure: avg_full_resolution_time_in_hours__business {
@@ -138,7 +138,7 @@ view: ticket_metrics {
 
   dimension: first_resolution_time_in_days__business {
     type: number
-    sql: ${TABLE}.first_resolution_time_in_minutes__business / 480 ;;
+    sql: ${TABLE}.first_resolution_time_in_minutes_business / 480 ;;
   }
 
   measure: avg_first_resolution_time_in_days__business {
@@ -156,7 +156,7 @@ view: ticket_metrics {
 
   dimension: full_resolution_time_in_days__business {
     type: number
-    sql: ${TABLE}.full_resolution_time_in_minutes__business / 480 ;;
+    sql: ${TABLE}.full_resolution_time_in_minutes_business / 480 ;;
   }
 
   measure: avg_full_resolution_time_in_days__business {
@@ -207,7 +207,7 @@ view: ticket_metrics {
 
   dimension: reply_time_in_minutes__business {
     type: number
-    sql: ${TABLE}.reply_time_in_minutes__business ;;
+    sql: ${TABLE}.reply_time_in_minutes_business ;;
   }
 
   measure: avg_reply_time_in_minutes__business {
@@ -228,7 +228,7 @@ view: ticket_metrics {
 
   dimension: reply_time_in_hours__business {
     type: number
-    sql: ${TABLE}.reply_time_in_minutes__business / 60 ;;
+    sql: ${TABLE}.reply_time_in_minutes_business / 60 ;;
   }
 
   measure: avg_reply_time_in_hours__business {
@@ -252,7 +252,7 @@ view: ticket_metrics {
 
   dimension: requester_wait_time_in_minutes__business {
     type: number
-    sql: ${TABLE}.requester_wait_time_in_minutes__business ;;
+    sql: ${TABLE}.requester_wait_time_in_minutes_business ;;
   }
 
   #   - dimension: requester_wait_time_in_minutes__calendar
