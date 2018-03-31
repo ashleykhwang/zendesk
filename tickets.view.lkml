@@ -12,6 +12,161 @@ view: tickets {
     sql: ${TABLE}.description ;;
   }
 
+  dimension: contact_reason {
+    type: string
+    sql: ${TABLE}.contact_reason ;;
+  }
+
+  dimension: compensation {
+    type: string
+    sql: ${TABLE}.compensation ;;
+  }
+
+  dimension: uuid_ts {
+    type: date_time
+    sql: ${TABLE}.uuid_ts ;;
+  }
+
+  dimension: satisfaction_rating_season {
+    type: string
+    sql: ${TABLE}.satisfaction_rating_season ;;
+  }
+
+  dimension: satisfaction_rating_season_id {
+    type: number
+    sql: ${TABLE}.satisfaction_rating_season_id ;;
+  }
+
+  dimension: tags_2 {
+    type: string
+    sql: ${TABLE}.tags_2 ;;
+  }
+
+  dimension: cancel_result {
+    type: string
+    sql: ${TABLE}.cancel_result ;;
+  }
+
+  dimension: billing {
+    type: string
+    sql: ${TABLE}.billing ;;
+  }
+
+  dimension: fulfillment_issue {
+    type: string
+    sql: ${TABLE}.fulfillment_issue ;;
+  }
+
+  dimension: info_requested {
+    type: string
+    sql: ${TABLE}.info_requested ;;
+  }
+
+  dimension: order_customize_edit {
+    type: string
+    sql: ${TABLE}.order_customize_edit ;;
+  }
+
+  dimension: other {
+    type: string
+    sql: ${TABLE}.other ;;
+  }
+
+  dimension: product_related {
+    type: string
+    sql: ${TABLE}.product_related ;;
+  }
+
+  dimension: shipping {
+    type: string
+    sql: ${TABLE}.shipping ;;
+  }
+
+  dimension: tech_issue {
+    type: string
+    sql: ${TABLE}.tech_issue ;;
+  }
+
+  dimension: time_spent_last_update_sec {
+    type: string
+    sql: ${TABLE}.time_spent_last_update_sec ;;
+  }
+
+  dimension: total_time_spent_sec {
+    type: string
+    sql: ${TABLE}.total_time_spent_sec ;;
+  }
+
+  dimension: update {
+    type: string
+    sql: ${TABLE}.update ;;
+  }
+
+  dimension: do_not_send_stella_connect_request {
+    type: yesno
+    sql: ${TABLE}.do_not_send_stella_connect_request ;;
+  }
+
+  dimension: style_account_update {
+    type: string
+    sql: ${TABLE}.style_account_update ;;
+  }
+
+  dimension: style_shipping {
+    type: string
+    sql: ${TABLE}.style_account_shipping ;;
+  }
+
+  dimension: style_billing {
+    type: string
+    sql: ${TABLE}.style_account_billing ;;
+  }
+
+  dimension: style_info_requested {
+    type: string
+    sql: ${TABLE}.style_account_info_requested ;;
+  }
+
+  dimension: style_action {
+    type: string
+    sql: ${TABLE}.style_action ;;
+  }
+
+  dimension: style_product_feedback {
+    type: string
+    sql: ${TABLE}.style_product_feedback ;;
+  }
+
+  dimension: style_cancel_result {
+    type: string
+    sql: ${TABLE}.style_cancel_result ;;
+  }
+
+  dimension: style_fulfillment {
+    type: string
+    sql: ${TABLE}.style_fulfillment ;;
+  }
+
+  dimension: style_feedback {
+    type: string
+    sql: ${TABLE}.style_feedback ;;
+  }
+
+  dimension: verification {
+    type: yesno
+    sql: ${TABLE}.verification ;;
+  }
+
+  dimension: style_contact_reason {
+    type: string
+    sql: ${TABLE}.style_contact_reason ;;
+  }
+
+  dimension: brand_id {
+    type: number
+    sql: ${TABLE}.brand_id ;;
+  }
+
   dimension: assignee_email {
     description: "the requester is the customer who initiated the ticket. the email is retrieved from the `users` table."
     sql: ${assignees.email} ;;
