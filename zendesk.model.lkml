@@ -22,14 +22,14 @@ explore: audits {
   }
 
   join: requesters {
-    from: users
+    from: zendesk_users
     type: left_outer
     sql_on: ${tickets.requester_id} = ${requesters.id} ;;
     relationship: many_to_one
   }
 
   join: assignees {
-    from: users
+    from: zendesk_users
     type: left_outer
     sql_on: ${tickets.assignee_id} = ${assignees.id} ;;
     relationship: many_to_one
@@ -92,14 +92,14 @@ explore: tickets {
   }
 
   join: requesters {
-    from: users
+    from: zendesk_users
     type: left_outer
     sql_on: ${tickets.requester_id} = ${requesters.id} ;;
     relationship: many_to_one
   }
 
   join: assignees {
-    from: users
+    from: zendesk_users
     type: left_outer
     sql_on: ${tickets.assignee_id} = ${assignees.id} ;;
     relationship: many_to_one
@@ -129,24 +129,24 @@ explore: ticket__tags {
   }
 
   join: requesters {
-    from: users
+    from: zendesk_users
     type: left_outer
     sql_on: ${tickets.requester_id} = ${requesters.id} ;;
     relationship: many_to_one
   }
 
   join: assignees {
-    from: users
+    from: zendesk_users
     type: left_outer
     sql_on: ${tickets.assignee_id} = ${assignees.id} ;;
     relationship: many_to_one
   }
 }
 
-explore: users {
+explore: zendesk_users {
   join: organizations {
     type: left_outer
-    sql_on: ${users.organization_id} = ${organizations.id} ;;
+    sql_on: ${zendesk_users.organization_id} = ${organizations.id} ;;
     relationship: many_to_one
   }
 }
@@ -168,9 +168,9 @@ explore: ticket_metrics {
     relationship: many_to_one
   }
 
-  join: users {
+  join: zendesk_users {
     type: left_outer
-    sql_on: ${tickets.assignee_id} = ${users.id} ;;
+    sql_on: ${tickets.assignee_id} = ${zendesk_users.id} ;;
     relationship: many_to_one
   }
 
@@ -181,14 +181,14 @@ explore: ticket_metrics {
   }
 
   join: requesters {
-    from: users
+    from: zendesk_users
     type: left_outer
     sql_on: ${tickets.requester_id} = ${requesters.id} ;;
     relationship: many_to_one
   }
 
   join: assignees {
-    from: users
+    from: zendesk_users
     type: left_outer
     sql_on: ${tickets.assignee_id} = ${assignees.id} ;;
     relationship: many_to_one

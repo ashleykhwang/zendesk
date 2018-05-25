@@ -31,7 +31,7 @@ view: ticket_metrics {
 
   dimension: assignee_email {
     type: string
-    sql: ${users.email} ;;
+    sql: ${zendesk_users.email} ;;
   }
 
   dimension: group_name {

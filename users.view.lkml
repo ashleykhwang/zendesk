@@ -1,4 +1,4 @@
-view: users {
+view: zendesk_users {
   sql_table_name: zendesk.users ;;
 
   dimension: id {
