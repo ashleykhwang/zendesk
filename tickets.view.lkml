@@ -119,17 +119,17 @@ view: tickets {
 
   dimension: style_shipping {
     type: string
-    sql: ${TABLE}.style_account_shipping ;;
+    sql: ${TABLE}.style_shipping ;;
   }
 
   dimension: style_billing {
     type: string
-    sql: ${TABLE}.style_account_billing ;;
+    sql: ${TABLE}.style_billing ;;
   }
 
   dimension: style_info_requested {
     type: string
-    sql: ${TABLE}.style_account_info_requested ;;
+    sql: ${TABLE}.style_info_requested ;;
   }
 
   dimension: style_action {
