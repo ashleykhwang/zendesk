@@ -57,6 +57,11 @@ view: tickets {
     sql: ${TABLE}.fulfillment_issue ;;
   }
 
+  dimension: modify_order {
+    type: string
+    sql: ${TABLE}.modify_order ;;
+  }
+
   dimension: info_requested {
     type: string
     sql: ${TABLE}.info_requested ;;
