@@ -73,6 +73,8 @@ explore: audits {
 #       relationship: many_to_one
 
 explore: organizations {}
+explore: dw_dim_dates{}
+explore: save_type_group{}
 
 explore: ticket_fields {
   label: "Ticket Fields"
@@ -109,6 +111,12 @@ explore: tickets {
     type: left_outer
     sql_on: ${tickets.group_id} = ${groups.id} ;;
     relationship: many_to_one
+  }
+
+  join: dw_dim_dates {
+    type: left_outer
+    sql_on: ${tickets.created_at_date}=${dw_dim_dates.date_date} ;;
+    relationship: one_to_one
   }
 }
 
@@ -192,5 +200,11 @@ explore: ticket_metrics {
     type: left_outer
     sql_on: ${tickets.assignee_id} = ${assignees.id} ;;
     relationship: many_to_one
+  }
+
+  join: dw_dim_dates {
+    type: left_outer
+    sql_on: ${ticket_metrics.solved_date}=${dw_dim_dates.date_date} ;;
+    relationship: one_to_one
   }
 }

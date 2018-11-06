@@ -262,9 +262,15 @@ view: ticket_metrics {
   dimension_group: solved {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.solved_at ;;
+    sql:${TABLE}.solved_at ;;
   }
 
+
+  dimension_group: solved_pst_timezone {
+    type: time
+    timeframes: [time, date, week, month]
+    sql: convert_timezone('PST',${TABLE}.solved_at) ;;
+  }
   dimension_group: status_updated {
     type: time
     timeframes: [time, date, week, month]
