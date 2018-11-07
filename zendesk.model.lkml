@@ -204,7 +204,7 @@ explore: ticket_metrics {
 
   join: dw_dim_dates {
     type: left_outer
-    sql_on: ${ticket_metrics.solved_date}=${dw_dim_dates.date_date} ;;
-    relationship: one_to_one
+    sql_on: trunc(${ticket_metrics.solved_date})=trunc(${dw_dim_dates.date_date}) ;;
+    relationship: many_to_many
   }
 }
