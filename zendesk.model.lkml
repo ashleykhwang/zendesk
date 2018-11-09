@@ -2,7 +2,7 @@ connection: "redshift"
 
 # include all the views
 include: "*.view"
-
+include: "/fff_analytics/dw_user_cube.view.lkml"
 # include all the dashboards
 include: "*.dashboard"
 
