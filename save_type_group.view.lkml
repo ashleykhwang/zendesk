@@ -1,6 +1,6 @@
 view: save_type_group {
   # parameter: received_season {
-  #  type: unquoted
+   #  type: date
   #}
   derived_table: {
     sql: WITH zendesk_save_starting_cohort AS
@@ -16,7 +16,8 @@ view: save_type_group {
                s.member_status AS status_0
         FROM zendesk.tickets
           JOIN zendesk.users ON zendesk.tickets.requester_id = zendesk.users.id
-          JOIN dw_dim_dates ON TRUNC (zendesk.tickets.received_at) = public.dw_dim_dates.day
+          JOIN zendesk.ticket_metrics ON zendesk.tickets.id =zendesk.ticket_metrics.ticket_id
+          JOIN dw_dim_dates ON trunc(zendesk.ticket_metrics.solved_at) = public.dw_dim_dates.day
           JOIN subscriber_season s
             ON zendesk.users.email = s.account_code
            AND public.dw_dim_dates.regular_season = s.sale_season

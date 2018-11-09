@@ -75,6 +75,7 @@ explore: audits {
 explore: organizations {}
 explore: dw_dim_dates{}
 explore: save_type_group{}
+explore: save_type_tactics{}
 
 explore: ticket_fields {
   label: "Ticket Fields"
