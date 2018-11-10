@@ -3,6 +3,7 @@ connection: "redshift"
 # include all the views
 include: "*.view"
 include: "/fff_analytics/dw_user_cube.view.lkml"
+#include: "/fff_analytics/dw_dim_dates.view.lkml"
 # include all the dashboards
 include: "*.dashboard"
 
@@ -164,6 +165,7 @@ explore: groups {}
 
 explore: tag_types {}
 
+
 explore: ticket_metrics {
   join: tickets {
     type: left_outer
@@ -200,6 +202,12 @@ explore: ticket_metrics {
     from: zendesk_users
     type: left_outer
     sql_on: ${tickets.assignee_id} = ${assignees.id} ;;
+    relationship: many_to_one
+  }
+
+  join: dw_user_cube {
+    type: left_outer
+    sql_on: ${dw_user_cube.account_code} = ${zendesk_users.email} ;;
     relationship: many_to_one
   }
 
