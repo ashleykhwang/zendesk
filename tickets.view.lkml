@@ -47,6 +47,13 @@ view: tickets {
     sql: ${TABLE}.cancel_result ;;
   }
 
+  dimension: cancel_result_saved {
+    type: string
+    sql:case when  ${TABLE}.cancel_result in ('save__other','save__select','save__change_bill_date','save__discount',
+    'save__ship_date','save__free_product','save__education','save__skip') then
+    ${TABLE}.cancel_result else 'OTHER' END;;
+  }
+
   dimension: billing {
     type: string
     sql: ${TABLE}.billing ;;

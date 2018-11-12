@@ -171,7 +171,7 @@ explore: tag_types {}
 
 
 explore: ticket_metrics {
-  fields: [ALL_FIELDS*,-dw_dim_dates.days_between_411_and_bd1,-dw_dim_dates.seasons_since]
+
   join: tickets {
     type: left_outer
     sql_on: ${ticket_metrics.ticket_id} = ${tickets.id} ;;
@@ -210,10 +210,66 @@ explore: ticket_metrics {
     relationship: many_to_one
   }
 
+}
+
+explore: ticket_metrics_save {
+  from: ticket_metrics
+  view_label: "cancel_result_save_tactics"
+  fields: [ALL_FIELDS*,-dw_dim_dates.days_between_411_and_bd1,-dw_dim_dates.seasons_since,
+    -subscriber_season.member_active_as_of_date,
+    -subscriber_season.ab_total_non_expired_users,-subscriber_season.ab_total_edit_eligible_members]
+
+  join: tickets {
+    type: left_outer
+    sql_on: ${ticket_metrics_save.ticket_id} = ${tickets.id} ;;
+    relationship: many_to_one
+  }
+
+  join: organizations {
+    type: left_outer
+    sql_on: ${tickets.organization_id} = ${organizations.id} ;;
+    relationship: many_to_one
+  }
+
+  join: zendesk_users {
+    type: left_outer
+    sql_on: ${tickets.assignee_id} = ${zendesk_users.id} ;;
+    relationship: many_to_one
+  }
+
+  join: groups {
+    type: left_outer
+    sql_on: ${tickets.group_id} = ${groups.id} ;;
+    relationship: many_to_one
+  }
+
+  join: requesters {
+    from: zendesk_users
+    type: left_outer
+    sql_on: ${tickets.requester_id} = ${requesters.id} ;;
+    relationship: many_to_one
+  }
+
+  join: assignees {
+    from: zendesk_users
+    type: left_outer
+    sql_on: ${tickets.assignee_id} = ${assignees.id} ;;
+    relationship: many_to_one
+  }
+
 
   join: dw_dim_dates {
     type: left_outer
-    sql_on: trunc(${ticket_metrics.solved_date})=trunc(${dw_dim_dates.date_date}) ;;
+    sql_on: trunc(${ticket_metrics_save.solved_date})=trunc(${dw_dim_dates.date_date}) ;;
     relationship: many_to_many
   }
+
+  join: subscriber_season {
+    type: left_outer
+    sql_on: ${zendesk_users.email}=${subscriber_season.account_code}
+    and ${dw_dim_dates.season_number} <= ${subscriber_season.sale_season_number}} ;;
+    relationship: many_to_many
+  }
+
+
 }
