@@ -1,4 +1,4 @@
-view: dw_dim_dates {
+view: dw_dim_dates_old {
   sql_table_name: public.dw_dim_dates ;;
 
   dimension: id {

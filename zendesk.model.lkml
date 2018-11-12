@@ -2,8 +2,10 @@ connection: "redshift"
 
 # include all the views
 include: "*.view"
-include: "/fff_analytics/dw_user_cube.view.lkml"
-#include: "/fff_analytics/dw_dim_dates.view.lkml"
+# include: "/fff_analytics/dw_user_cube.view.lkml"
+include: "/fff_analytics/dw_dim_dates.view.lkml"
+include: "/fff_analytics/subscriber_season.view.lkml"
+include: "/fff_analytics/dw_master_dates.view.lkml"
 # include all the dashboards
 include: "*.dashboard"
 
@@ -74,7 +76,7 @@ explore: audits {
 #       relationship: many_to_one
 
 explore: organizations {}
-explore: dw_dim_dates{}
+# explore: dw_dim_dates{}
 explore: save_type_group{}
 explore: save_type_tactics{}
 
@@ -89,6 +91,7 @@ explore: ticket_fields {
 }
 
 explore: tickets {
+  fields: [ALL_FIELDS*,-dw_dim_dates.days_between_411_and_bd1,-dw_dim_dates.seasons_since]
   join: organizations {
     type: left_outer
     sql_on: ${tickets.organization_id} = ${organizations.id} ;;
@@ -114,6 +117,7 @@ explore: tickets {
     sql_on: ${tickets.group_id} = ${groups.id} ;;
     relationship: many_to_one
   }
+
 
   join: dw_dim_dates {
     type: left_outer
@@ -167,6 +171,7 @@ explore: tag_types {}
 
 
 explore: ticket_metrics {
+  fields: [ALL_FIELDS*,-dw_dim_dates.days_between_411_and_bd1,-dw_dim_dates.seasons_since]
   join: tickets {
     type: left_outer
     sql_on: ${ticket_metrics.ticket_id} = ${tickets.id} ;;
@@ -205,11 +210,6 @@ explore: ticket_metrics {
     relationship: many_to_one
   }
 
-  join: dw_user_cube {
-    type: left_outer
-    sql_on: ${dw_user_cube.account_code} = ${zendesk_users.email} ;;
-    relationship: many_to_one
-  }
 
   join: dw_dim_dates {
     type: left_outer

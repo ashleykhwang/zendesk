@@ -1,4 +1,4 @@
-view: subscriber_season {
+view: subscriber_season_old {
   sql_table_name: public.subscriber_season ;;
 
   dimension: account_code {
