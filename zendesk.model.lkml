@@ -226,24 +226,28 @@ explore: ticket_metrics_save {
   }
 
   join: organizations {
+    fields: []
     type: left_outer
     sql_on: ${tickets.organization_id} = ${organizations.id} ;;
     relationship: many_to_one
   }
 
   join: zendesk_users {
+    fields: []
     type: left_outer
-    sql_on: ${tickets.assignee_id} = ${zendesk_users.id} ;;
-    relationship: many_to_one
+    sql_on: ${tickets.requester_id} = ${zendesk_users.id} ;;
+    relationship: one_to_one
   }
 
   join: groups {
+    fields: []
     type: left_outer
     sql_on: ${tickets.group_id} = ${groups.id} ;;
     relationship: many_to_one
   }
 
   join: requesters {
+    fields:[]
     from: zendesk_users
     type: left_outer
     sql_on: ${tickets.requester_id} = ${requesters.id} ;;
@@ -251,6 +255,7 @@ explore: ticket_metrics_save {
   }
 
   join: assignees {
+    fields: []
     from: zendesk_users
     type: left_outer
     sql_on: ${tickets.assignee_id} = ${assignees.id} ;;
@@ -267,7 +272,7 @@ explore: ticket_metrics_save {
   join: subscriber_season {
     type: left_outer
     sql_on: ${zendesk_users.email}=${subscriber_season.account_code}
-    and ${dw_dim_dates.season_number} <= ${subscriber_season.sale_season_number}} ;;
+    and ${dw_dim_dates.season_number} <= ${subscriber_season.sale_season_number} ;;
     relationship: many_to_many
   }
 
