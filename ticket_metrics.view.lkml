@@ -267,7 +267,7 @@ view: ticket_metrics {
 
   dimension: diff {
     type: number
-    sql:${TABLE}.subscriber_season.season_number -${TABLE}.dw_dim_dates.season_number  ;;
+    sql:subscriber_season.season_number -dw_dim_dates.season_number  ;;
   }
 
   dimension_group: solved_pst_timezone {
