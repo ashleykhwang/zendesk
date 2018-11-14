@@ -265,7 +265,7 @@ view: ticket_metrics {
     sql:${TABLE}.solved_at ;;
   }
 
-  dimension: diff {
+  dimension: number_of_seasons_since_solved_ticket{
     type: number
     sql:subscriber_season.season_number -dw_dim_dates.season_number  ;;
   }
