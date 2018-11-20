@@ -181,8 +181,9 @@ view: zendesk_contact_reason_sub_category {
   }
 
   measure: total_ticket_solved{
-    type: count
-    drill_fields: [detail*]
+    type:number
+    sql: ${TABLE}.count ;;
+
   }
 
   filter: solved_at {
