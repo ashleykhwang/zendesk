@@ -181,13 +181,13 @@ view: zendesk_contact_reason_sub_category {
   }
 
   measure: total_ticket_solved{
-    type:number
+    type:sum
     sql: ${TABLE}.count ;;
 
   }
 
   filter: solved_at {
-    type: date
+    type: date_time
   }
 
   set: detail {
