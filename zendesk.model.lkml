@@ -168,6 +168,7 @@ explore: zendesk_users {
 explore: groups {}
 
 explore: tag_types {}
+explore: zendesk_contact_reason_sub_category {}
 
 
 explore: ticket_metrics {
