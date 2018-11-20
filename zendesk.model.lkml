@@ -91,7 +91,7 @@ explore: ticket_fields {
 }
 
 explore: tickets {
-  fields: [ALL_FIELDS*,-dw_dim_dates.days_between_411_and_bd1,-dw_dim_dates.seasons_since]
+  fields: [ALL_FIELDS*,-dw_dim_dates.seasons_since]
   join: organizations {
     type: left_outer
     sql_on: ${tickets.organization_id} = ${organizations.id} ;;
@@ -215,7 +215,7 @@ explore: ticket_metrics {
 explore: ticket_metrics_save {
   from: ticket_metrics
   view_label: "cancel_result_save_tactics"
-  fields: [ALL_FIELDS*,-dw_dim_dates.days_between_411_and_bd1,-dw_dim_dates.seasons_since,
+  fields: [ALL_FIELDS*,-dw_dim_dates.seasons_since,
     -subscriber_season.member_active_as_of_date,
     -subscriber_season.ab_total_non_expired_users,-subscriber_season.ab_total_edit_eligible_members]
 
