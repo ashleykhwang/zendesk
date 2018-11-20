@@ -182,7 +182,7 @@ view: zendesk_contact_reason_sub_category {
 
   measure: total_ticket_solved {
     type: sum
-    sql: ${TABLE}.count ;;
+    sql: ${count} ;;
   }
 
   filter: solved_at {
