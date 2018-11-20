@@ -180,9 +180,9 @@ view: zendesk_contact_reason_sub_category {
     sql: ${TABLE}.count ;;
   }
 
-  measure: total_ticket_solved {
-    type: sum
-    sql: ${count} ;;
+  measure: total_ticket_solved{
+    type: count
+    drill_fields: [detail*]
   }
 
   filter: solved_at {
