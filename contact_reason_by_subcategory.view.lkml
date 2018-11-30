@@ -148,6 +148,11 @@ view: contact_reason_by_subcategory {
     sql: ${TABLE}.sub_category ;;
   }
 
+  dimension: category {
+    type: string
+    sql: ${TABLE}.category ;;
+  }
+
   dimension: id {
     type: string
     sql: ${TABLE}.id ;;
