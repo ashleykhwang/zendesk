@@ -169,7 +169,7 @@ explore: groups {}
 
 explore: tag_types {}
 explore: zendesk_contact_reason_sub_category {}
-
+explore: contact_reason_by_subcategory {}
 
 explore: ticket_metrics {
 

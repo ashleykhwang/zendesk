@@ -2,7 +2,7 @@ view: zendesk_contact_reason_sub_category {
   derived_table: {
     sql: WITH zendesk_contact_reason_sub_categories AS
       (
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) as solved_ticket_at,
+        SELECT convert_timezone ('PST',tm.solved_at) as solved_ticket_at,
                t.contact_reason,
                t.modify_order AS sub_category,
                'modify_order' AS Category,
@@ -15,7 +15,7 @@ view: zendesk_contact_reason_sub_category {
                  3,
                  4
         UNION
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) as solved_ticket_at,
+        SELECT convert_timezone ('PST',tm.solved_at) as solved_ticket_at,
                t.contact_reason,
                t.shipping,
                'shipping' AS Category,
@@ -28,7 +28,7 @@ view: zendesk_contact_reason_sub_category {
                  3,
                  4
         UNION
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) as solved_ticket_at,
+        SELECT convert_timezone ('PST',tm.solved_at) as solved_ticket_at,
                t.contact_reason,
                t.cancel_result,
                'cancel_result' AS Category,
@@ -41,7 +41,7 @@ view: zendesk_contact_reason_sub_category {
                  3,
                  4
         UNION
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) as solved_ticket_at,
+        SELECT convert_timezone ('PST',tm.solved_at) as solved_ticket_at,
                t.contact_reason,
                t.billing,
                'billing' AS Category,
@@ -54,7 +54,7 @@ view: zendesk_contact_reason_sub_category {
                  3,
                  4
         UNION
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) as solved_ticket_at,
+        SELECT convert_timezone ('PST',tm.solved_at) as solved_ticket_at,
                t.contact_reason,
                t.fulfillment_issue,
                'fulfillment_issue' AS Category,
@@ -67,7 +67,7 @@ view: zendesk_contact_reason_sub_category {
                  3,
                  4
         UNION
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) as solved_ticket_at,
+        SELECT convert_timezone ('PST',tm.solved_at) as solved_ticket_at,
                t.contact_reason,
                t.info_requested,
                'info_requested' AS Category,
@@ -80,7 +80,7 @@ view: zendesk_contact_reason_sub_category {
                  3,
                  4
         UNION
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) as solved_ticket_at,
+        SELECT convert_timezone ('PST',tm.solved_at) as solved_ticket_at,
                t.contact_reason,
                t.tech_issue,
                'tech_issue' AS Category,
@@ -93,7 +93,7 @@ view: zendesk_contact_reason_sub_category {
                  3,
                  4
         UNION
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) as solved_ticket_at,
+        SELECT convert_timezone ('PST',tm.solved_at) as solved_ticket_at,
                t.contact_reason,
                t.product_related,
                'product_related' AS Category,
@@ -106,7 +106,7 @@ view: zendesk_contact_reason_sub_category {
                  3,
                  4
         UNION
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) as solved_ticket_at,
+        SELECT convert_timezone ('PST',tm.solved_at) as solved_ticket_at,
                t.contact_reason,
                t.order_customize_edit,
                'order_customize_edit' AS Category,
@@ -119,7 +119,7 @@ view: zendesk_contact_reason_sub_category {
                  3,
                  4
         UNION
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) as solved_ticket_at,
+        SELECT convert_timezone ('PST',tm.solved_at) as solved_ticket_at,
                t.contact_reason,
                t.other,
                'other' AS Category,
@@ -132,7 +132,7 @@ view: zendesk_contact_reason_sub_category {
                  3,
                  4
         UNION
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) as solved_ticket_at,
+        SELECT convert_timezone ('PST',tm.solved_at) as solved_ticket_at,
                t.contact_reason,
                t.update,
                'update' AS Category,
@@ -154,9 +154,15 @@ view: zendesk_contact_reason_sub_category {
        ;;
   }
 
-  dimension: solved_ticket_at {
+  dimension_group: solved_ticket_at {
     label: "solved_ticket_at_pst"
-    type: date
+    type: time
+    timeframes: [
+      date,
+      week,
+      month,
+      year
+    ]
     sql: ${TABLE}.solved_ticket_at ;;
   }
 
@@ -190,7 +196,4 @@ view: zendesk_contact_reason_sub_category {
     type: date
   }
 
-  set: detail {
-    fields: [solved_ticket_at, contact_reason, sub_category, category, count]
-  }
 }
