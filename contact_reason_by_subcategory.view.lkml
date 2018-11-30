@@ -108,7 +108,7 @@ view: contact_reason_by_subcategory {
       order  by 1,
                2,
                3,
-               4;
+               4
        ;;
   }
 
