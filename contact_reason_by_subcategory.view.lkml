@@ -102,6 +102,7 @@ view: contact_reason_by_subcategory {
       SELECT DISTINCT zz.solved_ticket_at,
              zz.contact_reason,
              zz.sub_category,
+             zz.category,
              zz.id
       FROM zendesk_contact_reason_sub_categories_2 zz
 
