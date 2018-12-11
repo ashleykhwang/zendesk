@@ -75,10 +75,10 @@ explore: audits {
 #       sql_on: ${tickets.assignee_id} = ${assignees.id}
 #       relationship: many_to_one
 
-explore: organizations {}
+explore: organizations {hidden:yes}
 # explore: dw_dim_dates{}
 explore: save_type_group{}
-explore: save_type_tactics{}
+explore: save_type_tactics{hidden:yes}
 
 explore: ticket_fields {
   label: "Ticket Fields"
@@ -91,6 +91,7 @@ explore: ticket_fields {
 }
 
 explore: tickets {
+  hidden:yes
   fields: [ALL_FIELDS*,-dw_dim_dates.seasons_since]
   join: organizations {
     type: left_outer
@@ -158,6 +159,7 @@ explore: ticket__tags {
 }
 
 explore: zendesk_users {
+  hidden:yes
   join: organizations {
     type: left_outer
     sql_on: ${zendesk_users.organization_id} = ${organizations.id} ;;
@@ -165,10 +167,10 @@ explore: zendesk_users {
   }
 }
 
-explore: groups {}
+explore: groups {hidden:yes}
 
 explore: tag_types {}
-explore: contact_reason_by_subcategory {}
+explore: contact_reason_by_subcategory {hidden:yes}
 
 explore: ticket_metrics {
 
