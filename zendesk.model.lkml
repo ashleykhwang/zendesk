@@ -10,6 +10,7 @@ include: "/fff_analytics/dw_master_dates.view.lkml"
 include: "*.dashboard"
 
 explore: audits {
+  hidden: yes
   label: "Ticket Changes"
 
   join: tickets {
@@ -77,10 +78,11 @@ explore: audits {
 
 explore: organizations {hidden:yes}
 # explore: dw_dim_dates{}
-explore: save_type_group{}
+explore: save_type_group{hidden: yes}
 explore: save_type_tactics{hidden:yes}
 
 explore: ticket_fields {
+  hidden: yes
   label: "Ticket Fields"
 
   join: tickets__fields {
@@ -131,6 +133,7 @@ explore: tickets {
 #   view_label: 'Ticket fields'
 
 explore: ticket__tags {
+  hidden: yes
   join: tickets {
     type: left_outer
     sql_on: ${ticket__tags.ticket_id} = ${tickets.id} ;;
@@ -169,10 +172,11 @@ explore: zendesk_users {
 
 explore: groups {hidden:yes}
 
-explore: tag_types {}
+explore: tag_types {hidden: yes}
 explore: contact_reason_by_subcategory {hidden:yes}
 
 explore: ticket_metrics {
+  hidden: yes
 
   join: tickets {
     type: left_outer
@@ -215,6 +219,7 @@ explore: ticket_metrics {
 }
 
 explore: ticket_metrics_save {
+  hidden: yes
   from: ticket_metrics
   view_label: "cancel_result_save_tactics"
   fields: [ALL_FIELDS*,-dw_dim_dates.seasons_since,
