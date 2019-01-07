@@ -9,43 +9,43 @@ include: "/fff_analytics/dw_master_dates.view.lkml"
 # include all the dashboards
 include: "*.dashboard"
 
-explore: audits {
-  hidden: yes
-  label: "Ticket Changes"
+# explore: audits {
+# hidden: yes
+#  label: "Ticket Changes"
 
-  join: tickets {
-    type: left_outer
-    sql_on: ${audits.ticket_id} = ${tickets.id} ;;
-    relationship: many_to_one
-  }
+# join: tickets {
+#    type: left_outer
+#    sql_on: ${audits.ticket_id} = ${tickets.id} ;;
+#    relationship: many_to_one
+#  }
 
-  join: organizations {
-    type: left_outer
-    sql_on: ${tickets.organization_id} = ${organizations.id} ;;
-    relationship: many_to_one
-  }
+#  join: organizations {
+#    type: left_outer
+#    sql_on: ${tickets.organization_id} = ${organizations.id} ;;
+#    relationship: many_to_one
+#  }
 
-  join: requesters {
-    from: zendesk_users
-    type: left_outer
-    sql_on: ${tickets.requester_id} = ${requesters.id} ;;
-    relationship: many_to_one
-  }
+#  join: requesters {
+#    from: zendesk_users
+#    type: left_outer
+#    sql_on: ${tickets.requester_id} = ${requesters.id} ;;
+#    relationship: many_to_one
+#  }
 
-  join: assignees {
-    from: zendesk_users
-    type: left_outer
-    sql_on: ${tickets.assignee_id} = ${assignees.id} ;;
-    relationship: many_to_one
-  }
+#  join: assignees {
+#    from: zendesk_users
+#    type: left_outer
+#    sql_on: ${tickets.assignee_id} = ${assignees.id} ;;
+#    relationship: many_to_one
+#  }
 
-  join: audits__events {
-    #       type: left_outer
-    view_label: "Ticket Changes"
-    sql_on: ${audits.id} = ${audits__events.audit_id} ;;
-    relationship: one_to_many
-  }
-}
+#  join: audits__events {
+#    #       type: left_outer
+#    view_label: "Ticket Changes"
+#    sql_on: ${audits.id} = ${audits__events.audit_id} ;;
+#    relationship: one_to_many
+#  }
+#}
 
 # - explore: audits__events
 #   joins:
