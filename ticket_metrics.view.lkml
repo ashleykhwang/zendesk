@@ -236,18 +236,19 @@ view: ticket_metrics {
     sql: ${reply_time_in_hours__business} ;;
   }
 
-  #   - dimension: reply_time_in_hours__calendar
-  #     type: number
-  #     sql: ${TABLE}.reply_time_in_minutes__calendar / 60
-  #
-  #   - measure: avg_reply_time_in_hours__calendar
-  #     type: avg
-  #     sql: ${reply_time_in_hours__calendar}
 
+  dimension: reply_time_in_hours__calendar {
+       type: number
+       sql: ${TABLE}.reply_time_in_minutes__calendar / 60;;
+  }
+  measure: avg_reply_time_in_hours__calendar {
+       type: average
+       sql: ${reply_time_in_hours__calendar};;
+ }
   dimension_group: requester_updated {
-    type: time
-    timeframes: [time, date, week, month]
-    sql: ${TABLE}.requester_updated_at ;;
+  type: time
+  timeframes: [time, date, week, month]
+  sql: ${TABLE}.requester_updated_at ;;
   }
 
   dimension: requester_wait_time_in_minutes__business {
