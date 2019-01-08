@@ -70,13 +70,17 @@ view: ticket_metrics {
     group_label: "First Resolution Time"
   }
 
-  #   - dimension: first_resolution_time_in_minutes__calendar
-  #     type: number
-  #     sql: ${TABLE}.first_resolution_time_in_minutes__calendar
-  #
-  #   - measure: avg_first_resolution_time_in_minutes__calendar
-  #     type: avg
-  #     sql: ${first_resolution_time_in_minutes__calendar}
+  dimension: first_resolution_time_in_minutes__calendar{
+   type: number
+   sql: ${TABLE}.first_resolution_time_in_minutes__calendar;;
+   group_label: "First Resolution Time"
+  }
+
+  measure: avg_first_resolution_time_in_minutes__calendar{
+   type: average
+   sql: ${first_resolution_time_in_minutes__calendar};;
+   group_label: "First Resolution Time"
+  }
 
   dimension: full_resolution_time_in_minutes__business {
     type: number
@@ -164,14 +168,16 @@ view: ticket_metrics {
     group_label: "First Resolution Time"
   }
 
-  #   - dimension: first_resolution_time_in_days__calendar
-  #     type: number
-  #     sql: ${TABLE}.first_resolution_time_in_minutes__calendar / 1440
-  #
-  #   - measure: avg_first_resolution_time_in_days__calendar
-  #     type: avg
-  #     sql: ${first_resolution_time_in_days__calendar}
+  dimension: first_resolution_time_in_days__calendar{
+    type: number
+    sql: ${TABLE}.first_resolution_time_in_minutes__calendar / 1440;;
 
+  }
+  measure: avg_first_resolution_time_in_days__calendar{
+    type: average
+    sql: ${first_resolution_time_in_days__calendar};;
+    group_label: "First Resolution Time"
+  }
   dimension: full_resolution_time_in_days__business {
     type: number
     sql: ${TABLE}.full_resolution_time_in_minutes_business / 480 ;;
