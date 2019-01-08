@@ -107,14 +107,14 @@ view: ticket_metrics {
     sql: ${first_resolution_time_in_hours__business} ;;
   }
 
-  #   - dimension: first_resolution_time_in_hours__calendar
-  #     type: number
-  #     sql: ${TABLE}.first_resolution_time_in_minutes__calendar / 60
-  #
-  #   - measure: avg_first_resolution_time_in_hours__calendar
-  #     type: avg
-  #     sql: ${first_resolution_time_in_hours__calendar}
-
+ dimension: first_resolution_time_in_hours__calendar {
+     type: number
+     sql: ${TABLE}.first_resolution_time_in_minutes__calendar / 60;;
+  }
+ measure: avg_first_resolution_time_in_hours__calendar {
+     type: average
+     sql: ${first_resolution_time_in_hours__calendar};;
+ }
   dimension: full_resolution_time_in_hours__business {
     type: number
     sql: ${TABLE}.full_resolution_time_in_minutes_business / 60 ;;
@@ -125,14 +125,24 @@ view: ticket_metrics {
     sql: ${full_resolution_time_in_hours__business} ;;
   }
 
-  #   - dimension: full_resolution_time_in_hours__calendar
-  #     type: number
-  #     sql: ${TABLE}.full_resolution_time_in_minutes__calendar / 60
-  #
-  #   - measure: avg_full_resolution_time_in_hours__calendar
-  #     type: avg
-  #     sql: ${full_resolution_time_in_minutes__calendar}
+  measure: median_full_resolution_time_in_hours__business {
+    type: median
+    sql: ${full_resolution_time_in_hours__business} ;;
+  }
+   dimension: full_resolution_time_in_hours__calendar {
+    type: number
+    sql: ${TABLE}.full_resolution_time_in_minutes__calendar / 60;;
+  }
 
+  measure: avg_full_resolution_time_in_hours__calendar {
+    type: average
+    sql: ${full_resolution_time_in_hours__calendar};;
+  }
+
+  measure: median_full_resolution_time_in_hours__calendar {
+    type: median
+    sql: ${full_resolution_time_in_hours__calendar};;
+  }
 
   # DAYS
 
