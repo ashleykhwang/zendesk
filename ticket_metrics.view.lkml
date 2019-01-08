@@ -61,12 +61,13 @@ view: ticket_metrics {
   dimension: first_resolution_time_in_minutes__business {
     type: number
     sql: ${TABLE}.first_resolution_time_in_minutes_business ;;
+    group_label: "First Resolution Time"
   }
 
   measure: avg_first_resolution_time_in_minutes__business {
     type: average
     sql: ${first_resolution_time_in_minutes__business} ;;
-    group_label: "first_resolution_time"
+    group_label: "First Resolution Time"
   }
 
   #   - dimension: first_resolution_time_in_minutes__calendar
@@ -101,22 +102,24 @@ view: ticket_metrics {
   dimension: first_resolution_time_in_hours__business {
     type: number
     sql: (${TABLE}.first_resolution_time_in_minutes_business / 60) ;;
+    group_label: "First Resolution Time"
   }
 
   measure: avg_first_resolution_time_in_hours__business {
     type: average
     sql: ${first_resolution_time_in_hours__business} ;;
-    group_label: "first_resolution_time"
+    group_label: "First Resolution Time"
   }
 
  dimension: first_resolution_time_in_hours__calendar {
      type: number
      sql: ${TABLE}.first_resolution_time_in_minutes__calendar / 60;;
+     group_label: "First Resolution Time"
   }
  measure: avg_first_resolution_time_in_hours__calendar {
      type: average
      sql: ${first_resolution_time_in_hours__calendar};;
-  group_label: "first_resolution_time"
+     group_label: "First Resolution Time"
  }
   dimension: full_resolution_time_in_hours__business {
     type: number
@@ -152,13 +155,13 @@ view: ticket_metrics {
   dimension: first_resolution_time_in_days__business {
     type: number
     sql: ${TABLE}.first_resolution_time_in_minutes_business / 480 ;;
-    group_label: "first_resolution_time"
+    group_label: "First Resolution Time"
   }
 
   measure: avg_first_resolution_time_in_days__business {
     type: average
     sql: ${first_resolution_time_in_days__business} ;;
-    group_label: "first_resolution_time"
+    group_label: "First Resolution Time"
   }
 
   #   - dimension: first_resolution_time_in_days__calendar
