@@ -195,13 +195,65 @@ view: ticket_metrics {
     sql: ${TABLE}.latest_comment_added_at ;;
   }
 
-  #   - dimension: on_hold_time_in_minutes__business
-  #     type: number
-  #     sql: ${TABLE}.on_hold_time_in_minutes__business
-  #
-  #   - dimension: on_hold_time_in_minutes__calendar
-  #     type: number
-  #     sql: ${TABLE}.on_hold_time_in_minutes__calendar
+  dimension: on_hold_time_in_minutes__business {
+    type: number
+    sql: ${TABLE}.on_hold_time_in_minutes__business;;
+  }
+
+  dimension: on_hold_time_in_hours__business {
+    type: number
+    sql: ${TABLE}.on_hold_time_in_minutes__business/60;;
+  }
+
+  measure: avg_on_hold__time_in_minutes_business {
+    type: average
+    sql: ${on_hold_time_in_minutes__business};;
+  }
+
+  measure: avg_on_hold__time_in_hours_business {
+    type: average
+    sql: ${on_hold_time_in_hours__business};;
+  }
+
+  measure: median_on_hold__time_in_minutes_business {
+    type: median
+    sql: ${on_hold_time_in_minutes__business};;
+  }
+
+  measure: median_on_hold__time_in_hours_business {
+    type: median
+    sql: ${on_hold_time_in_hours__business};;
+  }
+
+   dimension: on_hold_time_in_minutes__calendar {
+    type: number
+    sql: ${TABLE}.on_hold_time_in_minutes__calendar;;
+  }
+
+  dimension: on_hold_time_in_hours__calendar {
+    type: number
+    sql: ${TABLE}.on_hold_time_in_minutes__calendar/60;;
+  }
+
+  measure: avg_on_hold__time_in_hours__calendar {
+    type: average
+    sql: ${on_hold_time_in_hours__calendar};;
+  }
+
+  measure: median_on_hold__time_in_hours__calendar {
+    type: median
+    sql: ${on_hold_time_in_hours__calendar};;
+  }
+
+  measure: avg_on_hold__time_in_minutes__calendar {
+    type: average
+    sql: ${on_hold_time_in_minutes__calendar};;
+  }
+
+  measure: median_on_hold__time_in_minutes__calendar {
+    type: median
+    sql: ${on_hold_time_in_minutes__calendar};;
+  }
 
   dimension: reopens {
     type: number
