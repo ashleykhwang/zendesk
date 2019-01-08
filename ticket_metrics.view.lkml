@@ -70,6 +70,12 @@ view: ticket_metrics {
     group_label: "First Resolution Time"
   }
 
+  measure: median_first_resolution_time_in_minutes__business {
+    type: median
+    sql: ${first_resolution_time_in_minutes__business} ;;
+    group_label: "First Resolution Time"
+  }
+
   dimension: first_resolution_time_in_minutes__calendar{
    type: number
    sql: ${TABLE}.first_resolution_time_in_minutes__calendar;;
@@ -80,6 +86,12 @@ view: ticket_metrics {
    type: average
    sql: ${first_resolution_time_in_minutes__calendar};;
    group_label: "First Resolution Time"
+  }
+
+  measure: median_first_resolution_time_in_minutes__calendar{
+    type: median
+    sql: ${first_resolution_time_in_minutes__calendar};;
+    group_label: "First Resolution Time"
   }
 
   dimension: full_resolution_time_in_minutes__business {
@@ -115,6 +127,12 @@ view: ticket_metrics {
     group_label: "First Resolution Time"
   }
 
+  measure: median_first_resolution_time_in_hours__business {
+    type: median
+    sql: ${first_resolution_time_in_hours__business} ;;
+    group_label: "First Resolution Time"
+  }
+
  dimension: first_resolution_time_in_hours__calendar {
      type: number
      sql: ${TABLE}.first_resolution_time_in_minutes__calendar / 60;;
@@ -125,6 +143,12 @@ view: ticket_metrics {
      sql: ${first_resolution_time_in_hours__calendar};;
      group_label: "First Resolution Time"
  }
+
+  measure: median_first_resolution_time_in_hours__calendar {
+    type: median
+    sql: ${first_resolution_time_in_hours__calendar};;
+    group_label: "First Resolution Time"
+  }
   dimension: full_resolution_time_in_hours__business {
     type: number
     sql: ${TABLE}.full_resolution_time_in_minutes_business / 60 ;;
@@ -168,16 +192,30 @@ view: ticket_metrics {
     group_label: "First Resolution Time"
   }
 
+  measure: median_first_resolution_time_in_days__business {
+    type: median
+    sql: ${first_resolution_time_in_days__business} ;;
+    group_label: "First Resolution Time"
+  }
+
   dimension: first_resolution_time_in_days__calendar{
     type: number
     sql: ${TABLE}.first_resolution_time_in_minutes__calendar / 1440;;
 
   }
+
   measure: avg_first_resolution_time_in_days__calendar{
     type: average
     sql: ${first_resolution_time_in_days__calendar};;
     group_label: "First Resolution Time"
   }
+
+  measure: median_first_resolution_time_in_days__calendar{
+    type: median
+    sql: ${first_resolution_time_in_days__calendar};;
+    group_label: "First Resolution Time"
+  }
+
   dimension: full_resolution_time_in_days__business {
     type: number
     sql: ${TABLE}.full_resolution_time_in_minutes_business / 480 ;;
