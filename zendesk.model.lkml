@@ -176,7 +176,7 @@ explore: tag_types {hidden: yes}
 explore: contact_reason_by_subcategory {hidden:yes}
 
 explore: ticket_metrics {
-  hidden: yes
+  hidden: no
 
   join: tickets {
     type: left_outer
