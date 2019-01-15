@@ -224,6 +224,7 @@ view: tickets {
   #     sql: ${TABLE}.brand_id
 
   dimension_group: created_at {
+    description: "PST Time Zone"
     type: time
     timeframes: [time, date, week, month]
     sql: convert_timezone('PST',${TABLE}.created_at)::timestamp ;;
