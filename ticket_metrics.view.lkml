@@ -201,7 +201,7 @@ view: ticket_metrics {
   dimension: first_resolution_time_in_days__calendar{
     type: number
     sql: ${TABLE}.first_resolution_time_in_minutes__calendar / 1440;;
-
+    group_label: "First Resolution Time"
   }
 
   measure: avg_first_resolution_time_in_days__calendar{
