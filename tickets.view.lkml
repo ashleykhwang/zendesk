@@ -23,6 +23,7 @@ view: tickets {
   }
 
   dimension: uuid_ts {
+    hidden: yes
     type: date_time
     sql: ${TABLE}.uuid_ts ;;
   }
@@ -230,12 +231,14 @@ view: tickets {
   }
 
   dimension: organization_id {
+    hidden: yes
     type: number
     value_format_name: id
     sql: ${TABLE}.organization_id ;;
   }
 
   dimension: organization_name {
+    hidden: yes
     type: string
     sql: ${organizations.name} ;;
   }
@@ -320,6 +323,7 @@ view: tickets {
   }
 
   dimension: is_open {
+    group_label: "Ticket Status Flag"
     type: yesno
     sql: ${status} = 'open' ;;
   }
@@ -411,17 +415,22 @@ view: tickets {
     timeframes: [day_of_week, hour_of_day]
     sql: ${TABLE}.created_at::timestamp ;;
   }
+
 }
 
-#   - dimension: created_day_of_week
-#     sql_case:
-#       Sunday:    ${hidden_created_day_of_week_index} = 6
-#       Monday:    ${hidden_created_day_of_week_index} = 0
-#       Tuesday:   ${hidden_created_day_of_week_index} = 1
-#       Wednesday: ${hidden_created_day_of_week_index} = 2
-#       Thursday:  ${hidden_created_day_of_week_index} = 3
-#       Friday:    ${hidden_created_day_of_week_index} = 4
-#       Saturday:  ${hidden_created_day_of_week_index} = 5
+#  dimension: created_day_of_week {
+#    type: date_day_of_week
+#      Sunday:    ${hidden_created_day_of_week_index} = 6
+#      Monday:    ${hidden_created_day_of_week_index} = 0
+#      Tuesday:   ${hidden_created_day_of_week_index} = 1
+#      Wednesday: ${hidden_created_day_of_week_index} = 2
+#      Thursday:  ${hidden_created_day_of_week_index} = 3
+#      Friday:    ${hidden_created_day_of_week_index} = 4
+#      Saturday:  ${hidden_created_day_of_week_index} = 5 ;;
+#
+#    }
+
+
 
 ### REVIEW
 #   - dimension: satisfaction_rating_percent_tier
