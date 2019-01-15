@@ -27,17 +27,18 @@ view: tickets {
     sql: ${TABLE}.uuid_ts ;;
   }
 
-  dimension: satisfaction_rating_season {
+  dimension: satisfaction_rating_reason {
     type: string
-    sql: ${TABLE}.satisfaction_rating_season ;;
+    sql: ${TABLE}.satisfaction_rating_reason ;;
   }
 
-  dimension: satisfaction_rating_season_id {
+  dimension: satisfaction_rating_reason_id {
     type: number
-    sql: ${TABLE}.satisfaction_rating_season_id ;;
+    sql: ${TABLE}.satisfaction_rating_reason_id ;;
   }
 
   dimension: tags_2 {
+    hidden: yes
     type: string
     sql: ${TABLE}.tags_2 ;;
   }
@@ -55,46 +56,55 @@ view: tickets {
   }
 
   dimension: billing {
+    group_label: "Contact Reason Category"
     type: string
     sql: ${TABLE}.billing ;;
   }
 
   dimension: fulfillment_issue {
+    group_label: "Contact Reason Category"
     type: string
     sql: ${TABLE}.fulfillment_issue ;;
   }
 
   dimension: modify_order {
+    group_label: "Contact Reason Category"
     type: string
     sql: ${TABLE}.modify_order ;;
   }
 
   dimension: info_requested {
+    group_label: "Contact Reason Category"
     type: string
     sql: ${TABLE}.info_requested ;;
   }
 
   dimension: order_customize_edit {
+    group_label: "Contact Reason Category"
     type: string
     sql: ${TABLE}.order_customize_edit ;;
   }
 
   dimension: other {
+    group_label: "Contact Reason Category"
     type: string
     sql: ${TABLE}.other ;;
   }
 
   dimension: product_related {
+    group_label: "Contact Reason Category"
     type: string
     sql: ${TABLE}.product_related ;;
   }
 
   dimension: shipping {
+    group_label: "Contact Reason Category"
     type: string
     sql: ${TABLE}.shipping ;;
   }
 
   dimension: tech_issue {
+    group_label: "Contact Reason Category"
     type: string
     sql: ${TABLE}.tech_issue ;;
   }
@@ -110,6 +120,7 @@ view: tickets {
   }
 
   dimension: update {
+    group_label: "Contact Reason Category"
     type: string
     sql: ${TABLE}.update ;;
   }
@@ -255,6 +266,7 @@ view: tickets {
 
   ## depending on use, either this field or "via_channel" will represent the channel the ticket came through
   dimension: subject {
+    hidden: yes
     type: string
     sql: ${TABLE}.subject ;;
   }
@@ -273,6 +285,7 @@ view: tickets {
   }
 
   dimension: via__channel {
+    hidden: yes
     type: string
     sql: ${TABLE}.via__channel ;;
   }
@@ -285,11 +298,13 @@ view: tickets {
   # ----- ADDITIONAL FIELDS -----
 
   dimension: is_backlogged {
+    group_label: "Ticket Status Flag"
     type: yesno
     sql: ${status} = 'pending' ;;
   }
 
   dimension: is_new {
+    group_label: "Ticket Status Flag"
     type: yesno
     sql: ${status} = 'new' ;;
   }
@@ -300,12 +315,14 @@ view: tickets {
   }
 
   dimension: is_solved {
+    group_label: "Ticket Status Flag"
     description: "solved tickets have either a solved or closed status"
     type: yesno
     sql: ${status} = 'solved' OR ${status} = 'closed' ;;
   }
 
   dimension: subject_category {
+    hidden: yes
     sql: CASE
       WHEN ${subject} LIKE 'Chat%' THEN 'Chat'
       WHEN ${subject} LIKE 'Offline message%' THEN 'Offline Message'
@@ -316,6 +333,8 @@ view: tickets {
   }
 
   measure: count_pending_tickets {
+    label: "Count Pending Tickets"
+    group_label: "Count of Tickets"
     type: count
 
     filters: {
@@ -325,6 +344,8 @@ view: tickets {
   }
 
   measure: count_new_tickets {
+    label: "Count New Tickets"
+    group_label: "Count of Tickets"
     type: count
 
     filters: {
@@ -334,6 +355,8 @@ view: tickets {
   }
 
   measure: count_open_tickets {
+    label: "Count Open Tickets"
+    group_label: "Count of Tickets"
     type: count
 
     filters: {
@@ -343,6 +366,8 @@ view: tickets {
   }
 
   measure: count_solved_tickets {
+    label: "Count Solved Tickets"
+    group_label: "Count of Tickets"
     type: count
 
     filters: {
@@ -352,11 +377,13 @@ view: tickets {
   }
 
   measure: count_distinct_organizations {
+    hidden: yes
     type: count_distinct
     sql: ${organization_id} ;;
   }
 
   measure: count_orgs_submitting {
+    hidden: yes
     type: count_distinct
     sql: ${organizations.name} ;;
 
