@@ -8,6 +8,7 @@ view: tickets {
   }
 
   dimension: description {
+    hidden: yes
     type: string
     sql: ${TABLE}.description ;;
   }
@@ -34,6 +35,7 @@ view: tickets {
   }
 
   dimension: satisfaction_rating_reason_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.satisfaction_rating_reason_id ;;
   }
@@ -202,12 +204,14 @@ view: tickets {
   }
 
   dimension: assignee_email {
+    group_label: "Assignee"
     description: "the requester is the customer who initiated the ticket. the email is retrieved from the `users` table."
     sql: ${assignees.email} ;;
   }
 
   ## include only if your Zendesk application utilizes the assignee_id field
   dimension: assignee_id {
+    group_label: "Assignee"
     type: number
     value_format_name: id
     sql: ${TABLE}.assignee_id ;;
@@ -249,11 +253,13 @@ view: tickets {
   }
 
   dimension: requester_email {
+    group_label: "Requester"
     description: "the requester is the customer who initiated the ticket. the email is retrieved from the `users` table."
     sql: ${requesters.email} ;;
   }
 
   dimension: requester_id {
+    group_label: "Requester"
     description: "the requester is the customer who initiated the ticket"
     type: number
     value_format_name: id
@@ -406,6 +412,49 @@ view: tickets {
       value: "-NULL"
     }
   }
+
+  measure: median_total_time_spent_minutes {
+    group_label: "Total Time Spent in Minutes Measures"
+    hidden: no
+    type: median
+    sql: ${total_time_spent_sec}/60 ;;
+  }
+
+  measure: max_total_time_spent_minutes {
+    group_label: "Total Time Spent in Minutes Measures"
+    hidden: no
+    type: max
+    sql: ${total_time_spent_sec}/60 ;;
+  }
+
+  measure: min_total_time_spent_minutes {
+    group_label: "Total Time Spent in Minutes Measures"
+    hidden: no
+    type: min
+    sql: ${total_time_spent_sec}/60 ;;
+  }
+
+  measure: median_time_spent_last_update_minutes {
+    group_label: "Time Spent since Last Update in Minutes Measures"
+    hidden: no
+    type: median
+    sql: ${time_spent_last_update_sec}/60 ;;
+  }
+
+  measure: max_time_spent_last_update_minutes {
+    group_label: "Time Spent since Last Update in Minutes Measures"
+    hidden: no
+    type: max
+    sql: ${time_spent_last_update_sec}/60 ;;
+  }
+
+  measure: min_time_spent_last_update_minutes {
+    group_label: "Time Spent since Last Update in Minutes Measures"
+    hidden: no
+    type: min
+    sql: ${time_spent_last_update_sec}/60 ;;
+  }
+
 
   ############ TIME FIELDS ###########
 
