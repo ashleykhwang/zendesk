@@ -30,6 +30,7 @@ view: tickets {
   }
 
   dimension: satisfaction_rating_reason {
+    hidden: yes
     type: string
     sql: ${TABLE}.satisfaction_rating_reason ;;
   }
@@ -225,7 +226,7 @@ view: tickets {
   dimension_group: created_at {
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.created_at::timestamp ;;
+    sql: convert_timezone('PST',${TABLE}.created_at)::timestamp ;;
   }
 
   dimension: group_id {
