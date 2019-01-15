@@ -131,51 +131,61 @@ view: tickets {
   }
 
   dimension: style_account_update {
+    group_label: "Style Contact Reason Category"
     type: string
     sql: ${TABLE}.style_account_update ;;
   }
 
   dimension: style_shipping {
+    group_label: "Style Contact Reason Category"
     type: string
     sql: ${TABLE}.style_shipping ;;
   }
 
   dimension: style_billing {
+    group_label: "Style Contact Reason Category"
     type: string
     sql: ${TABLE}.style_billing ;;
   }
 
   dimension: style_info_requested {
+    group_label: "Style Contact Reason Category"
     type: string
     sql: ${TABLE}.style_info_requested ;;
   }
 
   dimension: style_action {
+    group_label: "Style Contact Reason Category"
     type: string
     sql: ${TABLE}.style_action ;;
   }
 
   dimension: style_product_feedback {
+    group_label: "Style Contact Reason Category"
     type: string
     sql: ${TABLE}.style_product_feedback ;;
   }
 
   dimension: style_cancel_result {
+    group_label: "Style Contact Reason Category"
     type: string
     sql: ${TABLE}.style_cancel_result ;;
   }
 
   dimension: style_fulfillment {
+    group_label: "Style Contact Reason Category"
     type: string
     sql: ${TABLE}.style_fulfillment ;;
   }
 
   dimension: style_feedback {
+    group_label: "Style Contact Reason Category"
     type: string
     sql: ${TABLE}.style_feedback ;;
   }
 
   dimension: verification {
+    group_label: "Style Contact Reason Category"
     type: yesno
     sql: ${TABLE}.verification ;;
   }
