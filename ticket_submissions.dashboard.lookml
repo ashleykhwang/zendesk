@@ -47,6 +47,56 @@
       date: tickets.created_at_date
       organization: tickets.organization_name
 
+  - name: add_a_unique_name_1547677253
+    title: Untitled Visualization
+    model: zendesk
+    explore: ticket_metrics
+    type: looker_column
+    fields: [tickets.count, tickets.status]
+    filters:
+     tickets.created_at_date: 30 days
+     tickets.organization_name: ''
+    sorts: [tickets.count desc]
+    limit: 500
+    column_limit: 50
+    stacking: ''
+    show_value_labels: true
+    label_density: 25
+    legend_position: center
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: true
+    point_style: none
+    series_labels:
+    tickets.count: Total Tickets
+    tickets.count_solved_tickets: Solved Tickets
+    series_types: {}
+    limit_displayed_rows: false
+    limit_displayed_rows_values:
+    show_hide: hide
+    first_last: first
+    num_rows: 0
+    y_axis_combined: true
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    show_x_axis_ticks: true
+    x_axis_scale: auto
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    ordering: none
+    show_null_labels: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    hidden_fields: []
+    show_comparison: false
+
+
   - name: avg_tickets_per_org
     title: Average tickets per org
     type: single_value
