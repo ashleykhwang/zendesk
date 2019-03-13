@@ -41,7 +41,7 @@ view: contact_reason_by_subcategory {
                z.contact_reason,
                z.cancel_result AS sub_category,
                'cancel_result' AS Category,
-               z.id
+               z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
         UNION
         SELECT z.solved_ticket_at AS solved_ticket_at,
