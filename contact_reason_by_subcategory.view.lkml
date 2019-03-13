@@ -2,7 +2,7 @@ view: contact_reason_by_subcategory {
   derived_table: {
     sql: WITH zendesk_contact_reason_sub_categories AS
       (
-        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) AS solved_ticket_at,
+        SELECT TRUNC(convert_timezone ('MST',tm.solved_at)) AS solved_ticket_at,
                t.contact_reason,
                t.modify_order,
                t.shipping,
@@ -18,7 +18,7 @@ view: contact_reason_by_subcategory {
                t.id
         FROM zendesk.ticket_metrics tm
           LEFT JOIN zendesk.tickets t ON t.id = tm.ticket_id
-        WHERE  {% condition solved_at %}  convert_timezone('PST',tm.solved_at) {% endcondition %}
+        WHERE  {% condition solved_at %}  convert_timezone('MST',tm.solved_at) {% endcondition %}
       ),
       zendesk_contact_reason_sub_categories_2 AS
       (
@@ -127,7 +127,7 @@ view: contact_reason_by_subcategory {
 
 
   dimension_group: solved_ticket_at {
-    label: "solved_ticket_at_pst"
+    label: "solved_ticket_at_mst"
     type: time
     timeframes: [
       date,

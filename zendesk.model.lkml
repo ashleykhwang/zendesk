@@ -3,9 +3,9 @@ connection: "redshift"
 # include all the views
 include: "*.view"
 # include: "/fff_analytics/dw_user_cube.view.lkml"
-include: "/fff_analytics/dw_dim_dates.view.lkml"
-include: "/fff_analytics/subscriber_season.view.lkml"
-include: "/fff_analytics/dw_master_dates.view.lkml"
+include: "//fff_analytics/dw_dim_dates.view.lkml"
+include: "//fff_analytics/subscriber_season.view.lkml"
+include: "//fff_analytics/dw_master_dates.view.lkml"
 # include all the dashboards
 include: "*.dashboard"
 
