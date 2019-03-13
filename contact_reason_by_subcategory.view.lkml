@@ -15,7 +15,8 @@ view: contact_reason_by_subcategory {
                t.info_requested,
                t.order_customize_edit,
                t.billing,
-               t.id
+               t.id,
+               t.status
         FROM zendesk.ticket_metrics tm
           LEFT JOIN zendesk.tickets t ON t.id = tm.ticket_id
         WHERE  {% condition solved_at %}  convert_timezone('MST',tm.solved_at) {% endcondition %}
@@ -26,14 +27,14 @@ view: contact_reason_by_subcategory {
                z.contact_reason,
                z.modify_order AS sub_category,
                'modify_order' AS Category,
-               z.id
+               z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
         UNION
         SELECT z.solved_ticket_at AS solved_ticket_at,
                z.contact_reason,
                z.shipping AS sub_category,
                'shipping' AS Category,
-               z.id
+               z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
         UNION
         SELECT z.solved_ticket_at AS solved_ticket_at,
@@ -47,63 +48,63 @@ view: contact_reason_by_subcategory {
                z.contact_reason,
                z.billing AS sub_category,
                'billing' AS Category,
-               z.id
+               z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
         UNION
         SELECT z.solved_ticket_at AS solved_ticket_at,
                z.contact_reason,
                z.fulfillment_issue AS sub_category,
                'fulfillment_issue' AS Category,
-               z.id
+               z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
         UNION
         SELECT z.solved_ticket_at AS solved_ticket_at,
                z.contact_reason,
                z.info_requested AS sub_category,
                'info_requested' AS Category,
-               z.id
+               z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
         UNION
         SELECT z.solved_ticket_at AS solved_ticket_at,
                z.contact_reason,
                z.tech_issue AS sub_category,
                'tech_issue' AS Category,
-               z.id
+               z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
         UNION
         SELECT z.solved_ticket_at AS solved_ticket_at,
                z.contact_reason,
                z.product_related AS sub_category,
                'product_related' AS Category,
-               z.id
+               z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
         UNION
         SELECT z.solved_ticket_at AS solved_ticket_at,
                z.contact_reason,
                z.order_customize_edit AS sub_category,
                'order_customize_edit' AS Category,
-               z.id
+               z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
         UNION
         SELECT z.solved_ticket_at AS solved_ticket_at,
                z.contact_reason,
                z.other AS sub_category,
                'other' AS Category,
-               z.id
+               z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
         UNION
         SELECT z.solved_ticket_at AS solved_ticket_at,
                z.contact_reason,
                z.update AS sub_category,
                'update' AS Category,
-               z.id
+               z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
       )
       SELECT DISTINCT zz.solved_ticket_at,
              zz.contact_reason,
              zz.sub_category,
              zz.category,
-             zz.id
+             zz.id,zz.status
       FROM zendesk_contact_reason_sub_categories_2 zz
 
       order  by 1,
@@ -146,6 +147,11 @@ view: contact_reason_by_subcategory {
   dimension: sub_category {
     type: string
     sql: ${TABLE}.sub_category ;;
+  }
+
+  dimension: status {
+    type: string
+    sql: ${TABLE}.status ;;
   }
 
   dimension: category {
