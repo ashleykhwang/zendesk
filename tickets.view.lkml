@@ -204,6 +204,11 @@ view: tickets {
     sql: ${TABLE}.brand_id ;;
   }
 
+  dimension: stella_connect_star_rating {
+    type: number
+    sql: ${TABLE}.stella_connect_star_rating;;
+  }
+
   dimension: assignee_email {
     group_label: "Assignee"
     description: "the requester is the customer who initiated the ticket. the email is retrieved from the `users` table."
