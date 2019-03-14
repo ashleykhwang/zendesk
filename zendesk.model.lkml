@@ -216,6 +216,12 @@ explore: ticket_metrics {
     relationship: many_to_one
   }
 
+  join: stella {
+    type: left_outer
+    sql_on: ${tickets.id} = ${stella.ext_interaction_id} ;;
+    relationship: many_to_one
+  }
+
 }
 
 explore: ticket_metrics_save {
