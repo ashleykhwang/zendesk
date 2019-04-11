@@ -317,6 +317,43 @@ view: ticket_metrics {
     sql: ${TABLE}.replies ;;
   }
 
+  dimension: Is_One_Time_Replie {
+    type: yesno
+    sql: ${TABLE}.replies < 2;;
+  }
+
+  dimension: is_solved {
+    type: yesno
+    sql: ${TABLE}.solved_at  is not null;;
+  }
+
+  measure: count_one_time_touch_solved {
+    group_label: "Counts"
+    type: count
+    filters: {
+      field: Is_One_Time_Replie
+      value: "Yes"
+    }
+
+  }
+
+
+  measure: count_solved_tickets {
+    group_label: "Counts"
+    type: count
+    filters: {
+      field: is_solved
+      value: "Yes"
+    }
+  }
+
+  measure: percent_one_time_touch_solved {
+    type: number
+     value_format:"0.00\%"
+    sql: 100 * ${count_one_time_touch_solved}/NULLIF(${count_solved_tickets},0);;
+    }
+
+
   # FIRST REPLY MINUTES
 
   dimension: reply_time_in_minutes__business {
