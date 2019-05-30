@@ -117,6 +117,10 @@ view: zendesk_users {
     sql: ${TABLE}.url ;;
   }
 
+  dimension: user_fields_shipping_country  {
+    type: string
+    sql: ${TABLE}.user_fields_shipping_country ;;
+  }
   dimension: verified {
     type: yesno
     sql: ${TABLE}.verified ;;
