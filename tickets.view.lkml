@@ -311,7 +311,9 @@ view: tickets {
   }
 
   dimension: Ticket_Age {
-    type: number
+    type: tier
+    tiers: [0,2,4,6]
+    style: relational
     sql: datediff(day, ${created_at_date}, current_date) ;;
   }
 
