@@ -310,6 +310,11 @@ view: tickets {
     sql: ${TABLE}.type ;;
   }
 
+  dimension: Ticket_Age {
+    type: number
+    sql: datediff(day, ${created_at_date}, current_date) ;;
+  }
+
   dimension: via__channel {
     hidden: yes
     type: string
