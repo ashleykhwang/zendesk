@@ -331,7 +331,7 @@ view: tickets {
   dimension: is_backlogged {
     group_label: "Ticket Status Flag"
     type: yesno
-    sql: ${status} = 'pending' ;;
+    sql: ${status} in('pending','hold','new','open') ;;
   }
 
   dimension: is_new {
