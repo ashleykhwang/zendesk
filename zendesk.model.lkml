@@ -2,7 +2,7 @@ connection: "redshift"
 
 # include all the views
 include: "*.view"
-# include: "/fff_analytics/dw_user_cube.view.lkml"
+include: "//fff_analytics/dw_user_cube.view.lkml"
 include: "//fff_analytics/dw_dim_dates.view.lkml"
 include: "//fff_analytics/subscriber_season.view.lkml"
 include: "//fff_analytics/dw_master_dates.view.lkml"
@@ -289,5 +289,18 @@ explore: ticket_metrics_save {
     relationship: many_to_many
   }
 
+
+}
+
+
+explore: dw_user_cube {
+  hidden: no
+
+  join: key_num {
+    type: cross
+    sql_on: 1:1;;
+    relationship: many_to_many
+
+  }
 
 }
