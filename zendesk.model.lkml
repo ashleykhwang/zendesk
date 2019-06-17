@@ -297,7 +297,6 @@ explore: dw_user_cube {
   hidden: no
   join: key_num {
     type: cross
-    sql_on: 1:1;;
     relationship: many_to_many
 
   }
