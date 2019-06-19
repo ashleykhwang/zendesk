@@ -12,7 +12,7 @@ view: key_num {
 
   dimension: row_num {
     type: number
-    hidden: no
+    hidden: yes
     sql: ${TABLE}.row_num ;;
   }
 

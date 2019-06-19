@@ -4,6 +4,7 @@ connection: "redshift"
 include: "*.view"
 include: "//fff_analytics/dw_user_cube.view.lkml"
 include: "//fff_analytics/dw_dim_dates.view.lkml"
+include: "//fff_analytics/dim_season.view.lkml"
 include: "//fff_analytics/subscriber_season.view.lkml"
 include: "//fff_analytics/dw_master_dates.view.lkml"
 # include all the dashboards
@@ -191,6 +192,7 @@ explore: ticket_metrics {
   }
 
   join: zendesk_users {
+    fields: []
     type: left_outer
     sql_on: ${tickets.assignee_id} = ${zendesk_users.id} ;;
     relationship: many_to_one
@@ -222,7 +224,36 @@ explore: ticket_metrics {
     relationship: many_to_one
   }
 
+
+join: dw_user_cube {
+  fields: [,-dw_user_cube.rebill_flag]
+  view_label: "Requesters"
+  type: left_outer
+  sql_on: ${requesters.email} = ${dw_user_cube.account_code}  ;;
+  relationship: many_to_one
 }
+
+  join: assignee_dw_user_cube {
+    fields: [,-dw_user_cube.rebill_flag]
+    from:  dw_user_cube
+    type: left_outer
+    sql_on: ${assignee_dw_user_cube.email} = ${dw_user_cube.account_code}  ;;
+    relationship: many_to_one
+  }
+
+  join: dim_season {
+    view_label: "Ticket Metrics"
+    fields: [season, season_number]
+    type: left_outer
+    sql_on: ${ticket_metrics.solved_date} between ${dim_season.season_start} and ${dim_season.season_end}  ;;
+    relationship: many_to_one
+  }
+
+}
+
+
+
+
 
 explore: ticket_metrics_save {
   hidden: yes
@@ -294,6 +325,7 @@ explore: ticket_metrics_save {
 
 
 explore: dw_user_cube {
+  fields: [,-dw_user_cube.rebill_flag]
   hidden: no
   join: key_num {
     type: cross

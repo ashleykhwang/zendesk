@@ -2,7 +2,7 @@ view: contact_reason_by_subcategory {
   derived_table: {
     sql: WITH zendesk_contact_reason_sub_categories AS
       (
-        SELECT TRUNC(convert_timezone ('MST',tm.solved_at)) AS solved_ticket_at,
+        SELECT TRUNC(convert_timezone ('PST',tm.solved_at)) AS solved_ticket_at,
                t.contact_reason,
                t.modify_order,
                t.shipping,
@@ -15,11 +15,21 @@ view: contact_reason_by_subcategory {
                t.info_requested,
                t.order_customize_edit,
                t.billing,
+               t.information_about_fff_membership_features_internal,
+               t.product_type,
+               t.where_is_my_order_internal,
+               t.contact_reason_new,
+               t.i_have_a_problem_with_my_received_order_internal,
+               t.i_have_a_technical_problem_internal,
+               t.manage_my_account_internal,
+               t.i_want_to_cancel_internal,
+               t.i_need_to_make_changes_to_my_order_internal,
+               t.other_internal,
                t.id,
                t.status
         FROM zendesk.ticket_metrics tm
           LEFT JOIN zendesk.tickets t ON t.id = tm.ticket_id
-        WHERE  {% condition solved_at %}  convert_timezone('MST',tm.solved_at) {% endcondition %}
+        WHERE  {% condition solved_at %}  convert_timezone('PST',tm.solved_at) {% endcondition %}
       ),
       zendesk_contact_reason_sub_categories_2 AS
       (
@@ -97,6 +107,70 @@ view: contact_reason_by_subcategory {
                z.contact_reason,
                z.update AS sub_category,
                'update' AS Category,
+               z.id,z.status
+        FROM zendesk_contact_reason_sub_categories z
+             UNION
+        SELECT z.solved_ticket_at AS solved_ticket_at,
+               z.contact_reason_new as contact_reason,
+               z.information_about_fff_membership_features_internal AS sub_category,
+               'information_about_fff_membership_features_internal' AS Category,
+               z.id,z.status
+        FROM zendesk_contact_reason_sub_categories z
+
+        UNION
+        SELECT z.solved_ticket_at AS solved_ticket_at,
+               z.contact_reason_new as contact_reason,
+               z.product_type AS sub_category,
+               'product_type' AS Category,
+               z.id,z.status
+        FROM zendesk_contact_reason_sub_categories z
+        UNION
+        SELECT z.solved_ticket_at AS solved_ticket_at,
+               z.contact_reason_new as contact_reason,
+               z.where_is_my_order_internal AS sub_category,
+               'where_is_my_order_internal' AS Category,
+               z.id,z.status
+        FROM zendesk_contact_reason_sub_categories z
+        UNION
+        SELECT z.solved_ticket_at AS solved_ticket_at,
+               z.contact_reason_new as contact_reason,
+               z.i_have_a_problem_with_my_received_order_internal AS sub_category,
+               'i_have_a_problem_with_my_received_order_internal' AS Category,
+               z.id,z.status
+        FROM zendesk_contact_reason_sub_categories z
+        UNION
+        SELECT z.solved_ticket_at AS solved_ticket_at,
+               z.contact_reason_new as contact_reason,
+               z.i_have_a_technical_problem_internal AS sub_category,
+               'i_have_a_technical_problem_internal' AS Category,
+               z.id,z.status
+        FROM zendesk_contact_reason_sub_categories z
+        UNION
+        SELECT z.solved_ticket_at AS solved_ticket_at,
+               z.contact_reason_new as contact_reason,
+               z.manage_my_account_internal AS sub_category,
+               'manage_my_account_internal' AS Category,
+               z.id,z.status
+        FROM zendesk_contact_reason_sub_categories z
+        UNION
+        SELECT z.solved_ticket_at AS solved_ticket_at,
+               z.contact_reason_new as contact_reason,
+               z.i_want_to_cancel_internal AS sub_category,
+               'i_want_to_cancel_internal' AS Category,
+               z.id,z.status
+        FROM zendesk_contact_reason_sub_categories z
+         UNION
+        SELECT z.solved_ticket_at AS solved_ticket_at,
+               z.contact_reason_new as contact_reason,
+               z.i_need_to_make_changes_to_my_order_internal AS sub_category,
+               'i_need_to_make_changes_to_my_order_internal' AS Category,
+               z.id,z.status
+        FROM zendesk_contact_reason_sub_categories z
+            UNION
+        SELECT z.solved_ticket_at AS solved_ticket_at,
+               z.contact_reason_new as contact_reason,
+               z.other_internal AS sub_category,
+               'other_internal' AS Category,
                z.id,z.status
         FROM zendesk_contact_reason_sub_categories z
       )
