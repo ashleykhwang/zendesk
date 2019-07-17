@@ -26,7 +26,8 @@ view: zendesk_contact_reason_sub_categories_created_at {
                t.i_need_to_make_changes_to_my_order_internal,
                t.other_internal,
                t.id,
-               t.status
+               t.status,
+               t.requester_id
         FROM  zendesk.tickets t
         WHERE   {% condition created_at %}  convert_timezone('PST',t.created_at) {% endcondition %}
       ),
@@ -36,84 +37,84 @@ view: zendesk_contact_reason_sub_categories_created_at {
                z.contact_reason,
                z.modify_order AS sub_category,
                'modify_order' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason,
                z.shipping AS sub_category,
                'shipping' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason,
                z.cancel_result AS sub_category,
                'cancel_result' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason,
                z.billing AS sub_category,
                'billing' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason,
                z.fulfillment_issue AS sub_category,
                'fulfillment_issue' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason,
                z.info_requested AS sub_category,
                'info_requested' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason,
                z.tech_issue AS sub_category,
                'tech_issue' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason,
                z.product_related AS sub_category,
                'product_related' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason,
                z.order_customize_edit AS sub_category,
                'order_customize_edit' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason,
                z.other AS sub_category,
                'other' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason,
                z.update AS sub_category,
                'update' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
              UNION
         SELECT z.created_at AS created_at,
                z.contact_reason_new as contact_reason,
                z.information_about_fff_membership_features_internal AS sub_category,
                'information_about_fff_membership_features_internal' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
 
         UNION
@@ -121,63 +122,63 @@ view: zendesk_contact_reason_sub_categories_created_at {
                z.contact_reason_new as contact_reason,
                z.product_type AS sub_category,
                'product_type' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason_new as contact_reason,
                z.where_is_my_order_internal AS sub_category,
                'where_is_my_order_internal' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason_new as contact_reason,
                z.i_have_a_problem_with_my_received_order_internal AS sub_category,
                'i_have_a_problem_with_my_received_order_internal' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason_new as contact_reason,
                z.i_have_a_technical_problem_internal AS sub_category,
                'i_have_a_technical_problem_internal' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason_new as contact_reason,
                z.manage_my_account_internal AS sub_category,
                'manage_my_account_internal' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
         UNION
         SELECT z.created_at AS created_at,
                z.contact_reason_new as contact_reason,
                z.i_want_to_cancel_internal AS sub_category,
                'i_want_to_cancel_internal' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
          UNION
         SELECT z.created_at AS created_at,
                z.contact_reason_new as contact_reason,
                z.i_need_to_make_changes_to_my_order_internal AS sub_category,
                'i_need_to_make_changes_to_my_order_internal' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
             UNION
         SELECT z.created_at AS created_at,
                z.contact_reason_new as contact_reason,
                z.other_internal AS sub_category,
                'other_internal' AS Category,
-               z.id,z.status
+               z.id,z.status,z.requester_id
         FROM zendesk_contact_reason_sub_categories_created_at z
       )
       SELECT DISTINCT zz.created_at,
              zz.contact_reason,
              zz.sub_category,
              zz.category,
-             zz.id,zz.status
+             zz.id,zz.status,zz.requester_id
       FROM zendesk_contact_reason_sub_categories_created_at_2 zz
 
       order  by 1,
@@ -224,6 +225,12 @@ view: zendesk_contact_reason_sub_categories_created_at {
     type: string
     sql: ${TABLE}.id ;;
   }
+
+  dimension: requester_id {
+    type: string
+    sql: ${TABLE}.requester_id ;;
+  }
+
 
   dimension: status {
     type: string

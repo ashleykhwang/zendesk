@@ -176,7 +176,15 @@ explore: groups {hidden:yes}
 explore: tag_types {hidden: yes}
 explore: contact_reason_by_subcategory {hidden:yes}
 
-explore:  zendesk_contact_reason_sub_categories_created_at{}
+explore:  zendesk_contact_reason_sub_categories_created_at{
+  join: requesters {
+    fields: [requesters.user_fields_shipping_country]
+    from: zendesk_users
+    type: left_outer
+    sql_on: ${zendesk_contact_reason_sub_categories_created_at.id} = ${requesters.id} ;;
+    relationship: many_to_one
+  }
+}
 
 
 explore: ticket_metrics {
