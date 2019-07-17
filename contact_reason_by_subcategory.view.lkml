@@ -202,7 +202,7 @@ view: contact_reason_by_subcategory {
 
 
   dimension_group: solved_ticket_at {
-    label: "solved_ticket_at_mst"
+    label: "solved_ticket_at_pst"
     type: time
     timeframes: [
       date,
