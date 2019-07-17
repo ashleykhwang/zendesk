@@ -181,7 +181,7 @@ explore:  zendesk_contact_reason_sub_categories_created_at{
     fields: [requesters.user_fields_shipping_country]
     from: zendesk_users
     type: left_outer
-    sql_on: ${zendesk_contact_reason_sub_categories_created_at.id} = ${requesters.id} ;;
+    sql_on: ${zendesk_contact_reason_sub_categories_created_at.requester_id} = ${requesters.id} ;;
     relationship: many_to_one
   }
 }
