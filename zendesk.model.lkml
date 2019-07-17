@@ -176,6 +176,9 @@ explore: groups {hidden:yes}
 explore: tag_types {hidden: yes}
 explore: contact_reason_by_subcategory {hidden:yes}
 
+explore:  zendesk_contact_reason_sub_categories_created_at{}
+
+
 explore: ticket_metrics {
   hidden: no
 

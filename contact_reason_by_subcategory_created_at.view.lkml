@@ -195,7 +195,6 @@ view: zendesk_contact_reason_sub_categories_created_at {
 
 
   dimension_group: ticket_created_at {
-    label: "ticket_created_at"
     type: time
     timeframes: [
       date,
@@ -203,7 +202,7 @@ view: zendesk_contact_reason_sub_categories_created_at {
       month,
       year
     ]
-    sql: ${TABLE}.createdt_at ;;
+    sql: ${created_at} ;;
   }
 
   dimension: contact_reason {
