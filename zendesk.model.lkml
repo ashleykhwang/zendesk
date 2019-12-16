@@ -177,7 +177,7 @@ explore: tag_types {hidden: yes}
 explore: contact_reason_by_subcategory {hidden:yes}
 
 explore: ticket_metrics {
-  hidden: no
+  hidden: yes
 
   join: tickets {
     type: left_outer
@@ -326,7 +326,7 @@ explore: ticket_metrics_save {
 
 explore: dw_user_cube {
   fields: [,-dw_user_cube.rebill_flag]
-  hidden: no
+  hidden: yes
   join: key_num {
     type: cross
     relationship: many_to_many
