@@ -18,6 +18,16 @@ view: tickets {
     sql: ${TABLE}.contact_reason ;;
   }
 
+  dimension: contact_reason_new {
+    type: string
+    sql: ${TABLE}.contact_reason_new ;;
+  }
+
+  dimension: contact_reason_New_old {
+    type: string
+    sql: coalesce(${TABLE}.contact_reason_new,${TABLE}.contact_reason) ;;
+  }
+
   dimension: compensation {
     type: string
     sql: ${TABLE}.compensation ;;
